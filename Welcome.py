@@ -273,9 +273,12 @@ def main():
             encoded_string = base64.b64encode(image_file.read()).decode()
         return encoded_string
     
-    # Path to your image - this should be the path where the image is stored
-    image_path ="C:/Users/Felicie/.streamlit/clem2.py/w5.png"
+    # Obtenez le chemin du répertoire où se trouve le script Python actuel
+    base_path = os.path.dirname(__file__)
+    # Combinez le chemin du répertoire avec le nom du fichier image pour obtenir le chemin complet
+    image_path = os.path.join(base_path, "w5.png")
     image_base64 = get_image_base64(image_path)
+
 
     # Use the image base64 string in the markdown to display the image
     st.markdown(f'<div class="top-right"><img src="data:image/png;base64,{image_base64}" width="100"></div>', unsafe_allow_html=True)    

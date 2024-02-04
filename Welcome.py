@@ -92,7 +92,11 @@ csv_file_path = os.path.join(base_path, "PLEASE CODE ESSAI V9.csv")
 
 # Utilisation de @st.cache_resource pour charger les données GeoJSON
 @st.cache_resource
-def load_geojson(file_path):
+def load_geojson(file_name):
+    # Obtenez le chemin du répertoire où se trouve le script Python actuel
+    base_path = os.path.dirname(__file__)
+    # Combinez le chemin du répertoire avec le nom du fichier GeoJSON pour obtenir le chemin complet
+    file_path = os.path.join(base_path, region)
     with open(file_path, 'r') as file:
         return json.load(file)
 
@@ -318,20 +322,21 @@ def main():
 
     # Régions de France avec les chemins des fichiers GeoJSON
     regions = {
-        "Auvergne": "C:/Users/Felicie/.streamlit/clem2.py/region-auvergne-rhone-alpes.geojson",
-        "Burgundy": "C:/Users/Felicie/.streamlit/clem2.py/region-bourgogne-franche-comte.geojson",
-        "Brittany": "C:/Users/Felicie/.streamlit/clem2.py/region-bretagne.geojson",
-        "Centre Val de Loire": "C:/Users/Felicie/.streamlit/clem2.py/region-centre-val-de-loire.geojson",
-        "Corsica": "C:/Users/Felicie/.streamlit/clem2.py/region-corse.geojson",
-        "Grand Est": "C:/Users/Felicie/.streamlit/clem2.py/region-grand-est.geojson",
-        "Hauts de France": "C:/Users/Felicie/.streamlit/clem2.py/region-hauts-de-france.geojson",
-        "Île de France": "C:/Users/Felicie/.streamlit/clem2.py/region-ile-de-france.geojson",
-        "Normandy": "C:/Users/Felicie/.streamlit/clem2.py/region-normandie.geojson",
-        "Nouvelle-Aquitaine": "C:/Users/Felicie/.streamlit/clem2.py/region-nouvelle-aquitaine.geojson",
-        "Occitanie": "C:/Users/Felicie/.streamlit/clem2.py/region-occitanie.geojson",
-        "Pays de la Loire": "C:/Users/Felicie/.streamlit/clem2.py/region-pays-de-la-loire.geojson",
-        "Provence-Alpes-Côte d'Azur": "C:/Users/Felicie/.streamlit/clem2.py/region-provence-alpes-cote-d-azur.geojson"
+        "Auvergne": "region-auvergne-rhone-alpes.geojson",
+        "Burgundy": "region-bourgogne-franche-comte.geojson",
+        "Brittany": "region-bretagne.geojson",
+        "Centre Val de Loire": "region-centre-val-de-loire.geojson",
+        "Corsica": "region-corse.geojson",
+        "Grand Est": "region-grand-est.geojson",
+        "Hauts de France": "region-hauts-de-france.geojson",
+        "Île de France": "region-ile-de-france.geojson",
+        "Normandy": "region-normandie.geojson",
+        "Nouvelle-Aquitaine": "region-nouvelle-aquitaine.geojson",
+        "Occitanie": "region-occitanie.geojson",
+        "Pays de la Loire": "region-pays-de-la-loire.geojson",
+        "Provence-Alpes-Côte d'Azur": "region-provence-alpes-cote-d-azur.geojson"
     }
+
 
     # Création d'une carte centrée sur la France
     m = folium.Map(location=[46.603354, 1.888334], zoom_start=6)

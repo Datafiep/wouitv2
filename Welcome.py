@@ -85,8 +85,10 @@ div.stText {
 """
 
 st.markdown(css, unsafe_allow_html=True)
-# Chemin du fichier CSV corrigé
-CSV_FILE_PATH = r"C:\Users\Felicie\.streamlit\clem2.py\PLEASE CODE ESSAI V9.csv"
+# Obtenez le chemin du répertoire où se trouve le script Python actuel
+base_path = os.path.dirname(__file__)
+# Combinez le chemin du répertoire avec le nom du fichier CSV pour obtenir le chemin complet
+csv_file_path = os.path.join(base_path, "PLEASE CODE ESSAI V9.csv")
 
 # Utilisation de @st.cache_resource pour charger les données GeoJSON
 @st.cache_resource
@@ -95,7 +97,7 @@ def load_geojson(file_path):
         return json.load(file)
 
 def load_and_process_data():
-    data = pd.read_csv(CSV_FILE_PATH, delimiter=';', decimal=',')
+    data = pd.read_csv(csv_file_path, delimiter=';', decimal=',')
     data['Mean Score'] = data[['Productivity', 'Tolerance', 'Water requirement']].mean(axis=1)
     return data
 

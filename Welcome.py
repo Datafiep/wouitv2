@@ -5,6 +5,7 @@ import pandas as pd
 import numpy as np
 import pydeck as pdk
 import base64
+import os
 
 css = """
 <style>
@@ -266,18 +267,24 @@ def main():
     </style>
     """, unsafe_allow_html=True)
 
-    # Convert image to base64
-    def get_image_base64(path):
-        with open(path, "rb") as image_file:
+   # Convert image to base64
+    def get_image_base64(image_filename):
+        # Obtenez le chemin du répertoire où se trouve le script Python actuel
+        base_path = os.path.dirname(__file__)  # '__file__' est le chemin du script en cours
+        # Joignez le chemin du répertoire avec le nom du fichier image pour créer un chemin d'accès complet
+        image_path = os.path.join(base_path, image_filename)
+        # Ouvrez l'image et lisez-la en mode binaire
+        with open(image_path, "rb") as image_file:
+            # Encodez le contenu binaire de l'image en base64
             encoded_string = base64.b64encode(image_file.read()).decode()
+        # Retournez la chaîne encodée en base64
         return encoded_string
-    
-    # Path to your image - this should be the path where the image is stored
-    image_path ="C:/Users/Felicie/.streamlit/clem2.py/w5.png"
-    image_base64 = get_image_base64(image_path)
 
+    # Appelez la fonction avec le nom de votre fichier image pour obtenir le base64
+    image_base64 = get_image_base64("w5.png")
     # Use the image base64 string in the markdown to display the image
-    st.markdown(f'<div class="top-right"><img src="data:image/png;base64,{image_base64}" width="100"></div>', unsafe_allow_html=True)    
+    st.markdown(f'<div class="top-right"><img src="data:image/png;base64,{image_base64}" width="100"></div>', unsafe_allow_html=True)
+
     st.title("Map of France")
     st.subheader("Let's see which variety of common wheat is the best match for your farm!")
   # Définir le style CSS pour le cadre

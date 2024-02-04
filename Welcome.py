@@ -6,6 +6,18 @@ import numpy as np
 import pydeck as pdk
 import base64
 import os
+import Futures
+
+# Ajoutez un bouton pour naviguer vers la deuxième page
+if st.button("Go to Futures"):
+    st.experimental_rerun()
+
+# Page d'accueil
+if st.button("Go to Futures"):
+    page = "Futures"
+else:
+    page = "Welcome"  
+
 
 css = """
 <style>
@@ -528,7 +540,6 @@ def main():
             initial_view_state=vue,
             map_style='mapbox://styles/mapbox/light-v10'  # Utiliser un style de carte coloré
         ))
-    
-        
+
 if __name__ == "__main__":
     main()

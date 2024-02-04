@@ -92,7 +92,7 @@ csv_file_path = os.path.join(base_path, "PLEASE CODE ESSAI V9.csv")
 
 # Utilisation de @st.cache_resource pour charger les données GeoJSON
 @st.cache_resource
-def load_geojson(file_name):
+def load_geojson(region):
     # Obtenez le chemin du répertoire où se trouve le script Python actuel
     base_path = os.path.dirname(__file__)
     # Combinez le chemin du répertoire avec le nom du fichier GeoJSON pour obtenir le chemin complet
